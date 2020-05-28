@@ -8,5 +8,36 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="15"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="15"/>
+        </Grid.RowDefinitions>
+
+
+        <Label Content="Name:" Grid.Column="1" Grid.Row="1" FontWeight="Bold"/>
+        <TextBox Name="name_textblock" Grid.Column="1" Grid.Row="2"/>
+
+        <Label Content="Rewrite given text" Grid.Column="1" Grid.Row="3" Margin="0, 20, 0, 0" FontWeight="Bold"/>
+        <Label Name="textToRewriteLabel" Grid.Column="1" Grid.Row="4"/>
+        <TextBox Name="inputBox"  Grid.Column="1" Grid.Row="5" KeyDown="inputBox_KeyDown" KeyUp="inputBox_KeyUp"/>
+
+        <Button Name="save_button" Grid.Column="1" Grid.Row="6" Width="100" Content="Save" Margin="0, 10, 0, 0" Click="save_button_Click"/>
+        <Button Name="reset_button" Grid.Column="1" Grid.Row="7" Width="100" Content="Reset" Click="reset_button_Click"/>
+
     </Grid>
 </Window>
