@@ -50,10 +50,10 @@ namespace keystrokeDynamics
         Stopwatch stopwatchFlight;
 
         //List<long> dwells;
-        string textToRewrite = "nosil wilk razy kilka poniesli i wilka";
+        readonly string textToRewrite = "nosil wilk razy kilka poniesli i wilka";
 
         #region Metric
-        private double metricEuklides(long[] X, long[] Y)
+        private double MetricEuklides(long[] X, long[] Y)
         {
             double sum = 0;
             for (int i = 0; i < X.Length; i++)
@@ -63,7 +63,7 @@ namespace keystrokeDynamics
             double distance = Math.Sqrt(sum);
             return distance;
         }
-        private double metricManhattan(long[] X, long[] Y)
+        private double MetricManhattan(long[] X, long[] Y)
         {
             double distance = 0;
             for (int i = 0; i < X.Length; i++)
@@ -72,13 +72,19 @@ namespace keystrokeDynamics
             }
             return distance;
         }
-        private double metricCzebyszew(long[] X, long[] Y) //todo
+        private double MetricCzebyszew(long[] X, long[] Y)
         {
-            double distance = 0;
-
+            double[] sum = new double[X.Length];
+            for (int i = 0; i < X.Length; i++)
+            {
+                sum[i] = (X[i] - Y[i]);
+            }
+            List<double> sumList = new List<double>(sum);
+            sumList.Sort();
+            double distance = sumList[0];
             return distance;
         }
-        private double metricMahalanobisa(long[] X, long[] Y) //todo
+        private double MetricMahalanobisa(long[] X, long[] Y) //todo
         {
             double sum = 0;
 
@@ -138,13 +144,29 @@ namespace keystrokeDynamics
              }
              File.WriteAllText(name_textblock.Text + ".txt", dwellsAsString);*/
 
-            using (TextWriter tw = new StreamWriter(name_textblock.Text + ".txt"))
-            {
-                foreach (Data s in DataList)
-                    tw.WriteLine("KEY: " + s.Key + " DAWELL TIME: " + s.DawellTime + " FLIGHT TIME: " + s.FlightTime);
-            }
+            using TextWriter tw = new StreamWriter(name_textblock.Text + ".txt");
+            foreach (Data s in DataList)
+                tw.WriteLine("KEY: " + s.Key + " DAWELL TIME: " + s.DawellTime + " FLIGHT TIME: " + s.FlightTime);
 
 
         }
+
+        public void KNN()
+        {
+            long[,] tableValueDawell = new long[textToRewrite.Length, textToRewrite.Length];
+            //todo - okreslanie k 
+            int k = 3;
+            int i = 0;
+            foreach (Data s in DataList)
+            {
+                tableValueDawell[i++,0] = s.DawellTime;
+            }
+
+
+
+
+        }
+
+
     }
 }
