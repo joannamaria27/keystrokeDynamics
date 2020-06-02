@@ -37,7 +37,8 @@
         <TextBox Name="inputBox"  Grid.Column="1" Grid.Row="5" KeyDown="inputBox_KeyDown" KeyUp="inputBox_KeyUp"/>
 
         <Button Name="save_button" Grid.Column="1" Grid.Row="6" Width="100" Content="Save" Margin="0, 10, 0, 0" Click="save_button_Click"/>
-        <Button Name="reset_button" Grid.Column="1" Grid.Row="7" Width="100" Content="Reset" Click="reset_button_Click"/>
+        <Button Name="recognize_button" Grid.Column="1" Grid.Row="7" Width="100" Content="Recognize" Click="recognize_button_Click"/>
+        <Button Name="reset_button" Grid.Column="1" Grid.Row="8" Width="100" Content="Reset" Click="reset_button_Click"/>
 
     </Grid>
 </Window>

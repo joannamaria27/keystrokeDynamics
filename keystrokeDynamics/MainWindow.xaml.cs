@@ -26,6 +26,7 @@ namespace keystrokeDynamics
         public long DawellTime { get; private set; }
         public long FlightTime { get; private set; }
 
+
         public Data(string _Person, Key _Key, long _DawellTime, long _FlightTime)
         {
             //  DataId = _DataId;
@@ -35,7 +36,6 @@ namespace keystrokeDynamics
             FlightTime = _FlightTime;
         }
     }
-
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -48,6 +48,9 @@ namespace keystrokeDynamics
 
         Stopwatch stopwatchDawell;
         Stopwatch stopwatchFlight;
+        Attempt attempt;
+        public List<int> dwellsListForReading { get; set; }
+        public int[] dwells { get; set; }
 
         //List<long> dwells;
         readonly string textToRewrite = "nosil wilk razy kilka poniesli i wilka";
@@ -117,7 +120,7 @@ namespace keystrokeDynamics
             stopwatchFlight.Start();
             // dwells.Add(stopwatch.ElapsedMilliseconds);
             DataList.Add(new Data(name_textblock.Name, e.Key, stopwatchDawell.ElapsedMilliseconds, time));
-
+            dwellsListForReading.Add((int)stopwatchDawell.ElapsedMilliseconds);
             textInfo.Content = e.Key + " " + stopwatchDawell.ElapsedMilliseconds + "ms";
         }
 
@@ -133,6 +136,8 @@ namespace keystrokeDynamics
             DataList = new List<Data>();
             inputBox.Text = "";
             stopwatchFlight = new Stopwatch();
+            attempt = new Attempt();
+            dwellsListForReading = new List<int>();
         }
 
         private void save_button_Click(object sender, RoutedEventArgs e)
@@ -144,9 +149,21 @@ namespace keystrokeDynamics
              }
              File.WriteAllText(name_textblock.Text + ".txt", dwellsAsString);*/
 
-            using TextWriter tw = new StreamWriter(name_textblock.Text + ".txt");
-            foreach (Data s in DataList)
-                tw.WriteLine("KEY: " + s.Key + " DAWELL TIME: " + s.DawellTime + " FLIGHT TIME: " + s.FlightTime);
+            if (!inputBox.Text.Equals(textToRewrite)) {
+                MessageBox.Show("Wrong input (don't use functional buttons)");
+            }
+            else {
+                dwells = dwellsListForReading.ToArray();
+                dwellsListForReading = new List<int>();
+                attempt.dwells = dwells;
+                attempt.name = name_textblock.Text;
+                FileHandler.saveListToFile(attempt.dwells, name_textblock.Text);
+                MessageBox.Show("Saved");
+            }
+
+            //using TextWriter tw = new StreamWriter(name_textblock.Text + ".txt");
+            //foreach (Data s in DataList)
+            //    tw.WriteLine("KEY: " + s.Key + " DAWELL TIME: " + s.DawellTime + " FLIGHT TIME: " + s.FlightTime);
 
 
         }
@@ -167,6 +184,8 @@ namespace keystrokeDynamics
 
         }
 
+        private void recognize_button_Click(object sender, RoutedEventArgs e) {
 
+        }
     }
 }
