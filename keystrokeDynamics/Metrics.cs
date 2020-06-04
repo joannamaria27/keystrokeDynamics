@@ -1,25 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace keystrokeDynamics {
 	class Metrics {
 
-        public static double MetricEuklides(long[] X, long[] Y) {
-            double sum = 0;
-            for (int i = 0; i < X.Length; i++) {
-                sum += (X[i] - Y[i]) * (X[i] - Y[i]);
+        public static int MetricEuklides(Dictionary<string, long> X, Dictionary<string, long> Y) {
+            long sum = 0;
+            foreach (var key in X.Keys)
+            {
+                sum += (X[key] - Y[key]) * (X[key] - Y[key]);
             }
-            double distance = Math.Sqrt(sum);
+            int distance = (int)Math.Sqrt(sum);
             return distance;
         }
         public static int MetricManhattan(Dictionary<string, long> X, Dictionary<string, long> Y) {
             int distance = 0;
-
-            //for (int i = 0; i < X.Length; i++) {
-            //    distance += Math.Abs(X[i] - Y[i]);
-            //}
-
             foreach (var key in X.Keys) {
                 long xValue = X[key];
                 long yValue = Y[key];
@@ -27,21 +24,22 @@ namespace keystrokeDynamics {
             }
             return distance;
         }
-        public static double MetricCzebyszew(long[] X, long[] Y) {
-            double[] sum = new double[X.Length];
-            for (int i = 0; i < X.Length; i++) {
-                sum[i] = (X[i] - Y[i]);
+        public static int MetricCzebyszew(Dictionary<string, long> X, Dictionary<string, long> Y) {
+            double[] sum = new double[X.Count];
+            int i = 0;
+            foreach (var key in X.Keys)
+            {
+                sum[i++] = (X[key] - Y[key]);
             }
             List<double> sumList = new List<double>(sum);
-            sumList.Sort();
-            double distance = sumList[0];
+            int distance = (int)sumList.Max();
             return distance;
         }
-        public static double MetricMahalanobisa(long[] X, long[] Y) //todo
+        public static int MetricMahalanobisa(Dictionary<string, long> X, Dictionary<string, long> Y) //todo
         {
             double sum = 0;
 
-            double distance = Math.Sqrt(sum);
+            int distance = (int)Math.Sqrt(sum);
 
             return distance;
         }
