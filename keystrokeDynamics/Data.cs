@@ -9,9 +9,9 @@ namespace keystrokeDynamics {
         public string Person { get; private set; }
 
         public Dictionary<string, long> dwellTimes { get; private set; }
-        public Dictionary<Key, long> flightTime { get; private set; }
+        public Dictionary<string, long> flightTime { get; private set; }
 
-        public Data(string _Person, Dictionary<string, long> _DwellTimes, Dictionary<Key, long> _FlightTime) {
+        public Data(string _Person, Dictionary<string, long> _DwellTimes, Dictionary<string, long> _FlightTime) {
             //  DataId = _DataId;                                                            
             Person = _Person;
             dwellTimes = _DwellTimes;
