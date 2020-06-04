@@ -104,7 +104,7 @@ namespace keystrokeDynamics
             { 'W', '1' }, { 'V', '1' }, { 'X', '1' }, { 'Y', '1' }, { 'Z', '1' } };
 
 
-        List<long> lista = new List<long>();
+        //List<long> lista = new List<long>();
 
         private void inputBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -141,7 +141,7 @@ namespace keystrokeDynamics
            
             stopwatchDwell.Stop();
             var time = stopwatchDwell.ElapsedMilliseconds;
-            lista.Add(time);
+            //lista.Add(time);
             if (!DTime.TryAdd(e.Key, time))
             {
                 KeyConverter kc = new KeyConverter();
