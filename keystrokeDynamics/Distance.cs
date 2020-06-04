@@ -1,0 +1,10 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace keystrokeDynamics {
+	class Distance {
+		public string name { get; set; }
+		public int value { get; set; }
+	}
+}
