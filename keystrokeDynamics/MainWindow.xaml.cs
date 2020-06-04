@@ -104,26 +104,29 @@ namespace keystrokeDynamics
             { 'W', '1' }, { 'V', '1' }, { 'X', '1' }, { 'Y', '1' }, { 'Z', '1' } };
 
 
+        List<long> lista = new List<long>();
+
         private void inputBox_KeyDown(object sender, KeyEventArgs e)
         {
             stopwatchFlight.Stop();
-
-            if (!FTime.TryAdd(e.Key, stopwatchFlight.ElapsedMilliseconds))
+           
+            /*if (!FTime.TryAdd(e.Key, stopwatchFlight.ElapsedMilliseconds))
             {
                 KeyConverter kc = new KeyConverter();
                 string keyChar = kc.ConvertToString(e.Key);
 
                 for (int i = 0; i < 26; i++)
                 {
-                    if ((quantity[i, 0]).Equals(keyChar)) //to do 
+                    if ((quantity[i, 0].ToString()).Equals(keyChar.ToString())) //to do 
                     {
+                        FTime[e.Key] *= (quantity[i, 1]);
                         FTime[e.Key] += stopwatchFlight.ElapsedMilliseconds;
-                        FTime[e.Key] /= ++(quantity[i, 1]); //to do
+                        FTime[e.Key] /= (quantity[i, 1]);
                     }
 
                 }
 
-            }
+            }*/
                         
             stopwatchDwell = new Stopwatch();
             stopwatchDwell.Start();
@@ -135,9 +138,29 @@ namespace keystrokeDynamics
         Dictionary<Key, long> FTime = new Dictionary<Key, long>();
         private void inputBox_KeyUp(object sender, KeyEventArgs e)
         {
+           
             stopwatchDwell.Stop();
-            DTime.Add(e.Key, stopwatchDwell.ElapsedMilliseconds);
- 
+            var time = stopwatchDwell.ElapsedMilliseconds;
+            lista.Add(time);
+            if (!DTime.TryAdd(e.Key, time))
+            {
+                KeyConverter kc = new KeyConverter();
+                string keyChar = kc.ConvertToString(e.Key);
+
+                for (int i = 0; i < 26; i++)
+                {
+                    if ((quantity[i, 0].ToString()).Equals(keyChar.ToString()))
+                    {
+                     
+                        
+                        DTime[e.Key] *= Convert.ToInt32(new string((quantity[i, 1]), 1));
+                        DTime[e.Key] += time;//stopwatchDwell.ElapsedMilliseconds;
+                        DTime[e.Key] /= Convert.ToInt32(new string((++quantity[i, 1]), 1));
+                    }
+
+                }
+
+            }
             //textInfo.Content = e.Key + " " + stopwatchDawell.ElapsedMilliseconds + "ms";
         }
 
