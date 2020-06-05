@@ -38,16 +38,13 @@ namespace keystrokeDynamics
         {
             InitializeComponent();
             setDefaultValues();
-
-            //jesli jest baza 
-            database = loadDatabase(); 
+            database = loadDatabase();
         }
 
         private List<Data> loadDatabase()
         {
-
             List<Data> db = new List<Data>();
-            string[] files = { "marek_dwell.txt", "michal_dwell.txt", "test_dwell.txt" }; //ustawić swoje
+            string[] files = { "test_dwell.txt",/* "asia_dwell.txt", "test1_dwell.txt"*/ }; //ustawić swoje
 
             foreach (var file in files)
             {
@@ -66,14 +63,10 @@ namespace keystrokeDynamics
             return db;
         }
 
-        char[,] quantityOfEachLetter = { { 'A', '1' }, { 'B', '1' }, { 'C', '1' }, { 'D', '1' }, { 'E', '1' }, { 'F', '1' }, { 'G', '1' }, { 'H', '1' }, { 'I', '1' }, { 'J', '1' },
-            { 'K', '1' }, { 'L', '1' }, { 'M', '1' }, { 'N', '1' }, { 'O', '1' }, { 'P', '1' }, { 'Q', '1' }, { 'R', '1' }, { 'S', '1' }, { 'T', '1' }, { 'U', '1' },
-            { 'V', '1' }, { 'W', '1' }, { 'X', '1' }, { 'Y', '1' }, { 'Z', '1' } };
+        char[,] quantityOfEachLetter = { { 'A', '1' }, { 'B', '1' }, { 'C', '1' }, { 'D', '1' }, { 'E', '1' }, { 'F', '1' }, { 'G', '1' }, { 'H', '1' }, { 'I', '1' }, { 'J', '1' }, { 'K', '1' }, { 'L', '1' }, { 'M', '1' }, { 'N', '1' }, { 'O', '1' }, { 'P', '1' }, { 'Q', '1' }, { 'R', '1' }, { 'S', '1' }, { 'T', '1' }, { 'U', '1' }, { 'V', '1' }, { 'W', '1' }, { 'X', '1' }, { 'Y', '1' }, { 'Z', '1' } };
 
-        string[,] quantityOfLetter = { { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" },
-         { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" },
-         { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" },
-         { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" },};//new string[676, 2]; //to do
+        string[,] quantityOfLetter = { { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" },
+         { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" }, { "0", "0" },};//new string[676, 2]; //to do
 
         List<long> lista = new List<long>();
         string keyCharFirst = "-";
@@ -94,12 +87,17 @@ namespace keystrokeDynamics
                 {
                     if ((quantityOfLetter[i, 0]).Equals(keyChar.ToString()))
                     {
-                        fTimes[keyChar] *= Convert.ToInt32(quantityOfLetter[i, 1]);
-                        fTimes[keyChar] += flightTime;
                         int quantity = (Convert.ToInt32(quantityOfLetter[i, 1]));
-                        fTimes[keyChar] /= ++quantity;
-                        quantityOfLetter[i, 1] = quantity.ToString();
-                        z = true;
+                        if (quantity > 9)
+                            z = true;
+                        else
+                        {
+                            fTimes[keyChar] *= quantity;
+                            fTimes[keyChar] += flightTime;
+                            fTimes[keyChar] /= ++quantity;
+                            quantityOfLetter[i, 1] = quantity.ToString();
+                            z = true;
+                        }
                     }
                 }
                 if (z == false)
@@ -130,9 +128,15 @@ namespace keystrokeDynamics
                 {
                     if ((quantityOfEachLetter[i, 0].ToString()).Equals(keyChar.ToString()))
                     {
-                        dTimes[letter] *= Convert.ToInt32(new string((quantityOfEachLetter[i, 1]), 1));
-                        dTimes[letter] += dwellTime;
-                        dTimes[letter] /= Convert.ToInt32(new string((++quantityOfEachLetter[i, 1]), 1));
+                        int quantity = Convert.ToInt32(new string((quantityOfEachLetter[i, 1]), 1));
+                        if (quantity > 9)
+                            break;
+                        else
+                        {
+                            dTimes[letter] *= quantity;
+                            dTimes[letter] += dwellTime;
+                            dTimes[letter] /= ++quantity; //
+                        }
                     }
                 }
             }
@@ -151,6 +155,17 @@ namespace keystrokeDynamics
             stopwatchFlight = new Stopwatch();
             dTimes.Clear();
             fTimes.Clear();
+
+            for (int i = 0; i < quantityOfLetter.Length / 2; i++)
+                for (int j = 0; j < 2; j++)
+                    quantityOfLetter[i, j] = "0";
+
+            for (int i = 0; i < quantityOfEachLetter.Length / 2; i++)
+                quantityOfEachLetter[i, 1] = '1';
+
+            keyCharFirst = "-";
+            flightTime = 0;
+            l = 0;
         }
 
         private void save_button_Click(object sender, RoutedEventArgs e)
@@ -169,7 +184,6 @@ namespace keystrokeDynamics
                 twFlight.WriteLine("{0} {1}", y.Key, y.Value);
             }
             setDefaultValues();
-
         }
 
         public void KNN()
@@ -178,17 +192,22 @@ namespace keystrokeDynamics
             int distance;
             List<Distance> distances = new List<Distance>();
 
-            for (int i = 0; i < database.Count - 1; i++) {
-                if (manhattan_combobox.IsSelected) {
+            for (int i = 0; i < database.Count - 1; i++)
+            {
+                if (manhattan_combobox.IsSelected)
+                {
                     distance = Metrics.MetricManhattan(dTimes, database[i].dwellTimes);
                 }
-                else if (euklides_combobox.IsSelected) {
+                else if (euklides_combobox.IsSelected)
+                {
                     distance = Metrics.MetricEuklides(dTimes, database[i].dwellTimes);
                 }
-                else if (czebyszew_combobox.IsSelected) {
+                else if (czebyszew_combobox.IsSelected)
+                {
                     distance = Metrics.MetricCzebyszew(dTimes, database[i].dwellTimes);
                 }
-                else {
+                else
+                {
                     MessageBox.Show("No selected option");
                     return;
                 }
@@ -208,7 +227,8 @@ namespace keystrokeDynamics
             KNN();
         }
 
-        private void k_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e) {
+        private void k_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
