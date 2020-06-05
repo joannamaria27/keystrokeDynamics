@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace keystrokeDynamics
 {
@@ -173,30 +174,43 @@ namespace keystrokeDynamics
 
         public void KNN()
         {
+            int k = Int32.Parse(k_textbox.Text.ToString());
+            int distance;
+            List<Distance> distances = new List<Distance>();
 
+            for (int i = 0; i < database.Count - 1; i++) {
+                if (manhattan_combobox.IsSelected) {
+                    distance = Metrics.MetricManhattan(dTimes, database[i].dwellTimes);
+                }
+                else if (euklides_combobox.IsSelected) {
+                    distance = Metrics.MetricEuklides(dTimes, database[i].dwellTimes);
+                }
+                else if (czebyszew_combobox.IsSelected) {
+                    distance = Metrics.MetricCzebyszew(dTimes, database[i].dwellTimes);
+                }
+                else {
+                    MessageBox.Show("No selected option");
+                    return;
+                }
+
+                Distance dist = new Distance();
+                dist.name = database[i].Person;
+                dist.value = distance;
+                distances.Add(dist);
+            }
+            distances.Sort((p, q) => p.value.CompareTo(q.value)); // sortowanie po value
+            MessageBox.Show(distances.ElementAt(0).name);
         }
 
         private void recognize_button_Click(object sender, RoutedEventArgs e)
         {
-
             setDefaultValues();
+            KNN();
+        }
 
-            int distance;
-
-            //manhattan
-            List<Distance> distancesManhattan = new List<Distance>();
-            for (int i = 0; i < database.Count - 1; i++)
-            {
-                distance = Metrics.MetricManhattan(dTimes, database[i].dwellTimes);
-                Distance dist = new Distance();
-                dist.name = database[i].Person;
-                dist.value = distance;
-                distancesManhattan.Add(dist);
-            }
-            distancesManhattan.Sort((p, q) => p.value.CompareTo(q.value)); // sortowanie po value
-
-            MessageBox.Show(distancesManhattan.ElementAt(0).name);
-
+        private void k_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e) {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

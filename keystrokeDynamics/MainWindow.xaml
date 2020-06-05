@@ -40,12 +40,13 @@
             <Button Name="save_button"  Width="200" Content="Save" Margin="0, 10, 0, 0" Click="save_button_Click"/>
             <Separator Margin="5, 5" Width="200"/>
             <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
-                <ComboBox Width="100">
+                <ComboBox Width="85">
                     <ComboBoxItem Name="manhattan_combobox" Content="Manhattan" IsSelected="True"/>
                     <ComboBoxItem Name="czebyszew_combobox" Content="Czebyszew"/>
                     <ComboBoxItem Name="euklides_combobox" Content="Euklides"/>
                 </ComboBox>
-                <Button Name="recognize_button" Width="100" Content="Recognize" Click="recognize_button_Click"/>
+                <TextBox Name="k_textbox" Width="30" FontSize="14" PreviewTextInput="k_textbox_PreviewTextInput"/>
+                <Button Name="recognize_button" Width="85" Content="Recognize" Click="recognize_button_Click"/>
             </StackPanel>
             <Separator Margin="5, 5" Width="200"/>
             <Button Name="reset_button" Width="200" Content="Reset" Click="reset_button_Click"/>
