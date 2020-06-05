@@ -1,44 +1,54 @@
 ﻿<Window x:Class="keystrokeDynamics.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:keystrokeDynamics"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:keystrokeDynamics"
+		mc:Ignorable="d"
+		Title="MainWindow" Height="450" Width="800">
+	<Grid>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="15"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="15"/>
-        </Grid.ColumnDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="15"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="15"/>
+		</Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="15"/>
-        </Grid.RowDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="20"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="15"/>
+		</Grid.RowDefinitions>
 
 
-        <Label Content="Name:" Grid.Column="1" Grid.Row="1" FontWeight="Bold"/>
-        <TextBox Name="name_textblock" Grid.Column="1" Grid.Row="2"/>
+		<Label Content="Name:" Grid.Column="1" Grid.Row="1" FontWeight="Bold"/>
+		<TextBox Name="name_textblock" Grid.Column="1" Grid.Row="2"/>
 
-        <Label Name="textToRewriteLabel"  Content="Rewrite given text" Grid.Column="1" Grid.Row="3" FontWeight="Bold"/>
-        <Label Name="textInfo" Grid.Column="1" Grid.Row="4"/>
-        <TextBox Name="inputBox"  Grid.Column="1" Grid.Row="5" KeyDown="inputBox_KeyDown" KeyUp="inputBox_KeyUp"/>
+		<Label Name="textToRewriteLabel"  Content="Rewrite given text" Grid.Column="1" Grid.Row="3" FontWeight="Bold"/>
+		<Label Name="textInfo" Grid.Column="1" Grid.Row="4"/>
+		<TextBox Name="inputBox"  Grid.Column="1" Grid.Row="5" KeyDown="inputBox_KeyDown" KeyUp="inputBox_KeyUp"/>
 
-        <Button Name="save_button" Grid.Column="1" Grid.Row="6" Width="100" Content="Save" Margin="0, 10, 0, 0" Click="save_button_Click"/>
-        <Button Name="recognize_button" Grid.Column="1" Grid.Row="7" Width="100" Content="Recognize" Click="recognize_button_Click"/>
-        <Button Name="reset_button" Grid.Column="1" Grid.Row="8" Width="100" Content="Reset" Click="reset_button_Click"/>
-
+        <StackPanel Grid.Column="1" Grid.Row="6">
+            <Button Name="save_button"  Width="200" Content="Save" Margin="0, 10, 0, 0" Click="save_button_Click"/>
+            <Separator Margin="5, 5" Width="200"/>
+            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
+                <ComboBox Width="100">
+                    <ComboBoxItem Name="manhattan_combobox" Content="Manhattan" IsSelected="True"/>
+                    <ComboBoxItem Name="czebyszew_combobox" Content="Czebyszew"/>
+                    <ComboBoxItem Name="euklides_combobox" Content="Euklides"/>
+                </ComboBox>
+                <Button Name="recognize_button" Width="100" Content="Recognize" Click="recognize_button_Click"/>
+            </StackPanel>
+            <Separator Margin="5, 5" Width="200"/>
+            <Button Name="reset_button" Width="200" Content="Reset" Click="reset_button_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
