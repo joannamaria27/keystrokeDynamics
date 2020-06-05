@@ -38,7 +38,6 @@ namespace keystrokeDynamics
                 sum[i++] = (X[key] - Y[key]);
             }
             List<double> sumList = new List<double>(sum);
-            sumList.Sort();
             int distance = (int)sumList.Max();
             return distance;
         }

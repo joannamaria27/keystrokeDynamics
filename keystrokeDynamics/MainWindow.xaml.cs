@@ -44,7 +44,7 @@ namespace keystrokeDynamics
         private List<Data> loadDatabase()
         {
             List<Data> db = new List<Data>();
-            string[] files = { "test_dwell.txt", "asia4_dwell.txt", "asia3_dwell.txt" }; //ustawić swoje
+            string[] files = { "asia4_dwell.txt", "asia3_dwell.txt", "test_dwell.txt" }; //ustawić swoje
 
             foreach (var file in files)
             {
@@ -59,7 +59,6 @@ namespace keystrokeDynamics
                 }
                 db.Add(new Data(username, dTimes, fTimes));
             }
-
             return db;
         }
 
@@ -192,7 +191,7 @@ namespace keystrokeDynamics
             int distance;
             List<Distance> distances = new List<Distance>();
 
-            for (int i = 0; i < database.Count - 1; i++)
+            for (int i = 0; i <= database.Count - 1; i++)
             {
                 if (manhattan_combobox.IsSelected)
                 {
