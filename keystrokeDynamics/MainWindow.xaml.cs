@@ -31,7 +31,7 @@ namespace keystrokeDynamics
         Dictionary<string, long> fTimes = new Dictionary<string, long>();
         Stopwatch stopwatchDwell;
         Stopwatch stopwatchFlight;
-
+        string []showFile;
         readonly string textToRewrite = "nosilwilkrazykilkaponiesliiwilka";
 
         public MainWindow()
@@ -44,8 +44,8 @@ namespace keystrokeDynamics
         private List<Data> loadDatabase()
         {
             List<Data> db = new List<Data>();
-            string[] files = { "asia4_dwell.txt", "asia3_dwell.txt", "test_dwell.txt" }; //ustawić swoje
-
+            string[] files = { "niechcemisie_dwell.txt", "niechcemisie_dwell.txt", "niechcemisie_dwell.txt" }; //ustawić swoje
+            showFile = files;
             foreach (var file in files)
             {
                 dTimes = new Dictionary<string, long>();
@@ -230,6 +230,12 @@ namespace keystrokeDynamics
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+        private void show_button_Click(object sender, RoutedEventArgs e)
+        {
+            ShowDataBase showDataBase = new ShowDataBase(showFile);
+          
+            showDataBase.Show();
         }
     }
 }

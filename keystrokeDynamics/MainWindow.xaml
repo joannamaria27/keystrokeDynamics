@@ -50,6 +50,8 @@
             </StackPanel>
             <Separator Margin="5, 5" Width="200"/>
             <Button Name="reset_button" Width="200" Content="Reset" Click="reset_button_Click"/>
+            <Separator Margin="5, 5" Width="200"/>
+            <Button Name="show_button" Width="200" Content="Show_ Base" Click="show_button_Click"/>
         </StackPanel>
     </Grid>
 </Window>
