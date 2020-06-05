@@ -45,7 +45,7 @@
                     <ComboBoxItem Name="czebyszew_combobox" Content="Czebyszew"/>
                     <ComboBoxItem Name="euklides_combobox" Content="Euklides"/>
                 </ComboBox>
-                <TextBox Name="k_textbox" Width="30" FontSize="14" PreviewTextInput="k_textbox_PreviewTextInput"/>
+                <TextBox Name="k_textbox"  Width="30" FontSize="14" PreviewTextInput="k_textbox_PreviewTextInput">3</TextBox>
                 <Button Name="recognize_button" Width="85" Content="Recognize" Click="recognize_button_Click"/>
             </StackPanel>
             <Separator Margin="5, 5" Width="200"/>

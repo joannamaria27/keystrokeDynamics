@@ -44,7 +44,7 @@ namespace keystrokeDynamics
         private List<Data> loadDatabase()
         {
             List<Data> db = new List<Data>();
-            string[] files = { "test_dwell.txt",/* "asia_dwell.txt", "test1_dwell.txt"*/ }; //ustawić swoje
+            string[] files = { "test_dwell.txt", "asia4_dwell.txt", "asia3_dwell.txt" }; //ustawić swoje
 
             foreach (var file in files)
             {
@@ -223,8 +223,8 @@ namespace keystrokeDynamics
 
         private void recognize_button_Click(object sender, RoutedEventArgs e)
         {
-            setDefaultValues();
             KNN();
+            setDefaultValues();
         }
 
         private void k_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
