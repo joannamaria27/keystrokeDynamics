@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:keystrokeDynamics"
         mc:Ignorable="d"
-        Title="ShowDataBase" Height="462" Width="744">
+        Title="ShowDataBase" Height="550" Width="744">
     <Grid Margin="0,0,0,-6">
 
         <Grid Margin="0,0,0,10">
-            <Label Content="" x:Name="file1" HorizontalAlignment="Left" Margin="30,29,0,0" VerticalAlignment="Top" Height="30" Width="150"/>
-            <Label Content="" x:Name="file1_1" HorizontalAlignment="Left" Margin="180,29,0,0" VerticalAlignment="Top" Height="30" Width="150"/>
-            <Label Content="" x:Name="file2" HorizontalAlignment="Left" Margin="330,29,0,0" VerticalAlignment="Top" Height="34" Width="150"/>
-            <Label Content="" x:Name="file2_2" HorizontalAlignment="Left" Margin="480,25,0,0" VerticalAlignment="Top" Height="34" Width="150"/>
-            <Label Content="" x:Name="data1" HorizontalAlignment="Left" Margin="30,62,0,0" VerticalAlignment="Top" Height="366" Width="150"/>
-            <Label Content="" x:Name="data1_1" HorizontalAlignment="Left" Margin="180,62,0,0" VerticalAlignment="Top" Height="366" Width="150"/>
-            <Label Content="" x:Name="data2" HorizontalAlignment="Left" Margin="330,62,0,0" VerticalAlignment="Top" Height="366" Width="150"/>
-            <Label Content="" x:Name="data2_2" HorizontalAlignment="Left" Margin="480,62,0,0" VerticalAlignment="Top" Height="366" Width="150"/>
+            <Label Content="" x:Name="file1" HorizontalAlignment="Left" Margin="30,30,0,0" VerticalAlignment="Top" Height="30" Width="150"/>
+            <Label Content="" x:Name="file1_1" HorizontalAlignment="Left" Margin="180,30,0,0" VerticalAlignment="Top" Height="30" Width="150"/>
+            <Label Content="" x:Name="file2" HorizontalAlignment="Left" Margin="330,30,0,0" VerticalAlignment="Top" Height="34" Width="150"/>
+            <Label Content="" x:Name="file2_2" HorizontalAlignment="Left" Margin="480,30,0,0" VerticalAlignment="Top" Height="34" Width="150"/>
+            <Label Content="" x:Name="data1" HorizontalAlignment="Left" Margin="30,62,0,0" VerticalAlignment="Top" Height="450" Width="150"/>
+            <Label Content="" x:Name="data1_1" HorizontalAlignment="Left" Margin="180,62,0,0" VerticalAlignment="Top" Height="450" Width="150"/>
+            <Label Content="" x:Name="data2" HorizontalAlignment="Left" Margin="330,62,0,0" VerticalAlignment="Top" Height="450" Width="150"/>
+            <Label Content="" x:Name="data2_2" HorizontalAlignment="Left" Margin="480,62,0,0" VerticalAlignment="Top" Height="450" Width="150"/>
 
         </Grid>
     </Grid>

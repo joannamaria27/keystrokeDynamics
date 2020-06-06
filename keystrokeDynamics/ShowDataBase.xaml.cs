@@ -36,8 +36,8 @@ namespace keystrokeDynamics
             string showDataString = "";
             try
             {
-                file1.Content = files[0];
-                file2.Content = files[1];
+                file1.Content = "dwell: person: " + files[0].Remove(files[0].Length - 10);
+                file2.Content = "dwell: person: " + files[1].Remove(files[1].Length - 10);
             }
             catch { }
             foreach (var file in files)
@@ -70,8 +70,8 @@ namespace keystrokeDynamics
             showDataString = "";
             try
             {
-                file1_1.Content = filesFilght[0];
-                file2_2.Content = filesFilght[1];
+                file1_1.Content = "flight: person: " + filesFilght[0].Remove(filesFilght[0].Length - 11);
+                file2_2.Content = "flight: person: " + filesFilght[1].Remove(filesFilght[1].Length - 11);
             }
             catch { }
             foreach (var file in filesFilght)
@@ -81,9 +81,10 @@ namespace keystrokeDynamics
 
                 foreach (var line in lines)
                 {
-                    count++;
-                    if (count % 2 == 0) showDataString = showDataString + "  -   " + line + "\n";
-                    else showDataString = showDataString + line;
+                    showDataString = showDataString + line + "\n";
+                    /* count++;
+                     if (count % 2 == 0) showDataString = showDataString + "  -   " + line + "\n";
+                     else showDataString = showDataString + line;*/
 
                 }
                 if (numberFile == 0) data1_1.Content = showDataString;

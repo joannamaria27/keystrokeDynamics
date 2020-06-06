@@ -31,7 +31,7 @@ namespace keystrokeDynamics
         Dictionary<string, long> fTimes = new Dictionary<string, long>();
         Stopwatch stopwatchDwell;
         Stopwatch stopwatchFlight;
-        string []showFile;
+        string[] showFile;
         readonly string textToRewrite = "nosilwilkrazykilkaponiesliiwilka";
 
         public MainWindow()
@@ -43,15 +43,13 @@ namespace keystrokeDynamics
 
         private List<Data> loadDatabase()
         {
-            
+
             List<Data> db = new List<Data>();
-            string[] filesD = { "asia4_dwell.txt", "asia3_dwell.txt", "test_dwell.txt" }; //ustawić swoje
-            //string[] filesF = { "asia4_flight.txt", "asia3_flight.txt", "test_flight.txt" }; //ustawić swoje
+            string[] filesD = { "asia3_dwell.txt", "asia4_dwell.txt", "1_dwell.txt", "2_dwell.txt" }; //ustawić swoje
             showFile = filesD;
             foreach (var file in filesD)
             {
-                Dictionary<string, long>  dT = new Dictionary<string, long>();
-                //fTimes = new Dictionary<string, long>();
+                Dictionary<string, long> dT = new Dictionary<string, long>();
                 string[] lines = File.ReadAllLines(file);
                 string username = file.Remove(file.Length - 10); // nazwa pliku - "_dwell.txt" (10 znaków)
                 foreach (var line in lines)
@@ -175,11 +173,9 @@ namespace keystrokeDynamics
 
         private void save_button_Click(object sender, RoutedEventArgs e)
         {
-            Dictionary<string, long> dT = new Dictionary<string, long>();
-            Dictionary<string, long> fT = new Dictionary<string, long>();
-            dT = dTimes;
 
-            database.Add(new Data(name_textblock.Text, dT, fTimes));
+
+            database.Add(new Data(name_textblock.Text, dTimes, fTimes));
             using TextWriter twDwell = new StreamWriter(name_textblock.Text + "_dwell.txt");
             using TextWriter twFlight = new StreamWriter(name_textblock.Text + "_flight.txt");
 
@@ -201,7 +197,7 @@ namespace keystrokeDynamics
             int distance;
             List<Distance> distances = new List<Distance>();
 
-            for (int i = 0; i <= database.Count - 1; i++)
+            for (int i = 0; i < database.Count; i++)
             {
                 if (manhattan_combobox.IsSelected)
                 {
@@ -244,7 +240,7 @@ namespace keystrokeDynamics
         private void show_button_Click(object sender, RoutedEventArgs e)
         {
             ShowDataBase showDataBase = new ShowDataBase(showFile);
-          
+
             showDataBase.Show();
         }
     }
