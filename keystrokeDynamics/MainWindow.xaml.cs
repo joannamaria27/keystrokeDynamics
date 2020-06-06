@@ -43,22 +43,27 @@ namespace keystrokeDynamics
 
         private List<Data> loadDatabase()
         {
+            
             List<Data> db = new List<Data>();
-            string[] files = { "niechcemisie_dwell.txt", "niechcemisie_dwell.txt", "niechcemisie_dwell.txt" }; //ustawić swoje
-            showFile = files;
-            foreach (var file in files)
+            string[] filesD = { "asia4_dwell.txt", "asia3_dwell.txt", "test_dwell.txt" }; //ustawić swoje
+            //string[] filesF = { "asia4_flight.txt", "asia3_flight.txt", "test_flight.txt" }; //ustawić swoje
+            showFile = filesD;
+            foreach (var file in filesD)
             {
-                dTimes = new Dictionary<string, long>();
+                Dictionary<string, long>  dT = new Dictionary<string, long>();
+                //fTimes = new Dictionary<string, long>();
                 string[] lines = File.ReadAllLines(file);
                 string username = file.Remove(file.Length - 10); // nazwa pliku - "_dwell.txt" (10 znaków)
                 foreach (var line in lines)
                 {
                     string letter = line.Substring(0, 1);
                     int time = Int32.Parse(line.Substring(2));
-                    dTimes.Add(letter, time);
+                    dT.Add(letter, time);
                 }
-                db.Add(new Data(username, dTimes, fTimes));
+                db.Add(new Data(username, dT, fTimes));
             }
+
+            setDefaultValues();
             return db;
         }
 
@@ -152,8 +157,9 @@ namespace keystrokeDynamics
             textToRewriteLabel.Content = textToRewrite;
             inputBox.Text = "";
             stopwatchFlight = new Stopwatch();
-            dTimes.Clear();
-            fTimes.Clear();
+            dTimes = new Dictionary<string, long>();
+            fTimes = new Dictionary<string, long>();
+
 
             for (int i = 0; i < quantityOfLetter.Length / 2; i++)
                 for (int j = 0; j < 2; j++)
@@ -169,7 +175,11 @@ namespace keystrokeDynamics
 
         private void save_button_Click(object sender, RoutedEventArgs e)
         {
-            database.Add(new Data(name_textblock.Text, dTimes, fTimes));
+            Dictionary<string, long> dT = new Dictionary<string, long>();
+            Dictionary<string, long> fT = new Dictionary<string, long>();
+            dT = dTimes;
+
+            database.Add(new Data(name_textblock.Text, dT, fTimes));
             using TextWriter twDwell = new StreamWriter(name_textblock.Text + "_dwell.txt");
             using TextWriter twFlight = new StreamWriter(name_textblock.Text + "_flight.txt");
 
