@@ -273,9 +273,10 @@ namespace keystrokeDynamics
 							else {
 								distance = Metrics.MetricCzebyszew(database[i].dwellTimes, database[j].dwellTimes);
 							}
-							Distance dist = new Distance();
-							dist.name = database[i].Person;
-							dist.value = distance;
+							Distance dist = new Distance {
+								name = database[i].Person,
+								value = distance
+							};
 							distances.Add(dist);
 						}
 					}
@@ -304,9 +305,9 @@ namespace keystrokeDynamics
 			
 
 			MessageBox.Show(
-				"Manhattan " + manhattanCounter + "/30 \n" +
-				"Czebyszew " + czebyszewCounter + "/30 \n" + 
-				"Euklides " + euklidesCounter + "/30 \n");
+				"Manhattan " + manhattanCounter + "/" +database.Count + "\n" +
+				"Czebyszew " + czebyszewCounter + "/" + database.Count + "\n" + 
+				"Euklides " + euklidesCounter + "/" + database.Count + "\n");
 		}
 	}
 }
